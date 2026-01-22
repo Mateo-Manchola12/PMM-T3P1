@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.teo.t3p1.Screens.Screen1
 import com.teo.t3p1.Screens.Screen2
 import com.teo.t3p1.Screens.Screen3
+import com.teo.t3p1.Screens.Screen4
 
 @Composable
 fun Navigation(navigationController: NavHostController) {
@@ -22,6 +23,9 @@ fun Navigation(navigationController: NavHostController) {
         }
         composable(route = Routes.Screen3.route) {
             Screen3(navigationController)
+        }
+        composable(route = Routes.Screen4.route) {
+            Screen4(navigationController)
         }
     }
 }
