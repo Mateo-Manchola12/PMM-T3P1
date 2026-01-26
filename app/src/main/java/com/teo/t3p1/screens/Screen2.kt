@@ -1,4 +1,4 @@
-package com.teo.t3p1.Screens
+package com.teo.t3p1.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -11,34 +11,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.teo.t3p1.Routes
 
 @Composable
-fun Screen1(navigationController: NavHostController) {
+fun Screen2(navigationController: NavHostController, number: Number) {
     val onNextClick = {
-        navigationController.navigate(Routes.Screen2.route)
+        navigationController.navigate(Routes.Screen3.createRoute(3))
     }
     val onPreviousClick = {
-        navigationController.navigate(Routes.Screen4.route)
+        navigationController.navigate(Routes.Screen1.route)
     }
-
-    val buttons = listOf(
-        Pair("Ventana 1", { navigationController.navigate(Routes.Screen1.route) }),
-        Pair("Ventana 2", { navigationController.navigate(Routes.Screen2.route) }),
-        Pair("Ventana 3", { navigationController.navigate(Routes.Screen3.route) }),
-        Pair("Ventana 4", { navigationController.navigate(Routes.Screen4.route) })
-    )
-
-    Screen1View(
+    Screen2View(
+        number,
         onNextClick,
-        onPreviousClick,
-        buttons
+        onPreviousClick
     )
 }
 
 @Composable
-fun Screen1View(onNextClick: () -> Unit, onPreviousClick: () -> Unit, buttons: List<Pair<String, () -> Unit>>) {
+fun Screen2View(number: Number, onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -49,7 +40,7 @@ fun Screen1View(onNextClick: () -> Unit, onPreviousClick: () -> Unit, buttons: L
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             Text(
-                text = "1",
+                text = number.toString(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
             )
@@ -63,22 +54,12 @@ fun Screen1View(onNextClick: () -> Unit, onPreviousClick: () -> Unit, buttons: L
                     Text("Siguiente")
                 }
             }
-            Column(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                buttons.forEach { (label, action) ->
-                    Button(onClick = action) {
-                        Text(label)
-                    }
-                }
-            }
         }
     }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun Screen1Preview() {
-    val navigationController = rememberNavController()
-    Screen1(navigationController)
+fun Screen2Preview() {
+    Screen2View(number = 1, onNextClick = {}, onPreviousClick = {})
 }

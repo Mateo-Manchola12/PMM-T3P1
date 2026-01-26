@@ -1,4 +1,4 @@
-package com.teo.t3p1.Screens
+package com.teo.t3p1.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -11,28 +11,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.teo.t3p1.Routes
 
 @Composable
-fun Screen2(navigationController: NavHostController) {
+fun Screen3(navigationController: NavHostController, number: Number) {
     val onNextClick = {
-        navigationController.navigate(Routes.Screen3.route)
-    }
-    val onPreviousClick = {
         navigationController.navigate(Routes.Screen1.route)
     }
-    Screen2View(
+    val onPreviousClick = {
+        navigationController.navigate(Routes.Screen2.createRoute(3))
+    }
+    Screen3View(
+        number,
         onNextClick,
         onPreviousClick
     )
 }
 
 @Composable
-fun Screen2View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
+fun Screen3View(number: Number, onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         Column(
@@ -40,7 +39,7 @@ fun Screen2View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             Text(
-                text = "2",
+                text = number.toString(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
             )
@@ -60,7 +59,6 @@ fun Screen2View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun Screen2Preview() {
-    val navigationController = rememberNavController()
-    Screen2(navigationController)
+fun Screen3Preview() {
+    Screen3View(number = 1, onNextClick = {}, onPreviousClick = {})
 }

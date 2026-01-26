@@ -1,4 +1,4 @@
-package com.teo.t3p1.Screens
+package com.teo.t3p1.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -11,25 +11,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.teo.t3p1.Routes
 
 @Composable
-fun Screen4(navigationController: NavHostController) {
+fun Screen1(navigationController: NavHostController) {
     val onNextClick = {
-        navigationController.navigate(Routes.Screen1.route)
+        navigationController.navigate(Routes.Screen2.createRoute(2))
     }
     val onPreviousClick = {
         navigationController.navigate(Routes.Screen3.route)
     }
-    Screen4View(
+
+    Screen1View(
         onNextClick,
-        onPreviousClick
+        onPreviousClick,
     )
 }
 
 @Composable
-fun Screen4View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
+fun Screen1View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -40,7 +40,7 @@ fun Screen4View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             Text(
-                text = "4",
+                text = "1",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
             )
@@ -60,7 +60,6 @@ fun Screen4View(onNextClick: () -> Unit, onPreviousClick: () -> Unit) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun Screen4Preview() {
-    val navigationController = rememberNavController()
-    Screen4(navigationController)
+fun Screen1Preview() {
+    Screen1View(onNextClick = {}, onPreviousClick = {})
 }
